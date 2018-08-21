@@ -68,6 +68,8 @@ public class WebConfiguration {
                 throws IOException, ServletException {
             // TODO Auto-generated method stub
             HttpServletRequest request = (HttpServletRequest) srequest;
+//            srequest.setCharacterEncoding("UTF-8");
+//            sresponse.setCharacterEncoding("UTF-8");
             System.out.println("this is MyFilter,url :"+request.getRequestURI());
             filterChain.doFilter(srequest, sresponse);
         }
