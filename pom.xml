@@ -79,6 +79,11 @@
             <artifactId>spring-boot-starter-redis</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <!-- session共享 -->
+        <dependency>
+    		<groupId>org.springframework.session</groupId>
+    		<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

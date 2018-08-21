@@ -1,5 +1,9 @@
 package com.practice.demo.controller;
 
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +30,11 @@ public class HelloController {
 		return "hello 世界";
 	}
 	
+	/**
+	 * 测试redis数据缓存
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/getUser")
 	@Cacheable(value="user-key")
 	public User getUser() {
@@ -34,4 +43,20 @@ public class HelloController {
 	    System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");  
 	    return user;
 	}
+	
+	/**
+	 * 测试session
+	 * 
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/uid")
+    String uid(HttpSession session) {
+        UUID uid = (UUID) session.getAttribute("uid");
+        if (uid == null) {
+            uid = UUID.randomUUID();
+        }
+        session.setAttribute("uid", uid);
+        return session.getId();
+    }
 }
